@@ -1,6 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 route = Blueprint('views', __name__)
 
 @route.route('/')
 def home_page():
-    return "<h1>Student Task Manager</h1>"
+    return render_template("homepage.html")
