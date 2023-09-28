@@ -1,5 +1,37 @@
-{% extends "login.html" %} {% block title %} Login page {% endblock %} {% block content %}
-<h1>
-    Login page
-</h1>
+{% extends "homepage.html" %} {% block title %} Login page {% endblock %} {% block content %}
+<form method="POST">
+    <br /><br />
+        <h1 align="center">Login</h1>
+        <br /><br />
+        <div class="loginBox">
+            <center>
+            <input 
+                type="email"
+                class="loginFill"
+                id="email"
+                name="email"
+                placeholder="Email"
+                size="25"
+            />
+            </center>
+        </div>
+        <br /><br />
+        <div class="loginBox">
+            <center>
+            <input
+                type="password"
+                class="loginFill"
+                id="password"
+                name="password"
+                placeholder="Password"
+                size="25"
+            />
+            </center>
+        </div>
+        <br />
+        <center>
+        <button type="Login" class="btn btn-primary">Login</button>
+        </center>
+    </div>
+</form>
 {% endblock %}
