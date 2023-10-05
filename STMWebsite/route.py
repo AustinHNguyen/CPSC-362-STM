@@ -6,7 +6,6 @@ from . import db
 route = Blueprint('views', __name__)
 
 @route.route('/')
-@login_required
 def home_page():
     if  request.method == 'POST':
         note = request.form.get('note')
