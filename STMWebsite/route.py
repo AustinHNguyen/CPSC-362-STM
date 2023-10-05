@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, current_user
 from .models import Note
 from . import db
+import json
 
 route = Blueprint('views', __name__)
 
@@ -22,4 +23,4 @@ def home_page():
 @route.route('/delete-note', methods=['POST'])
 def delete_note():
     note = json.loads(request.data)
-    noteId = data['noteId']
+    noteId = note['noteId']
