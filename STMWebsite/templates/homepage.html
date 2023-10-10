@@ -1,5 +1,17 @@
-{% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %}
+{% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content 
+%}
 
-{% block content %}
-<h1> Home Page </h1>
+<h1 align="center">Tasks</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class = "list-group-item">{{ note.data }}</li>
+    {% endfor %}
+</ul>
+<form method = "POST">
+    <testarea name="note" id="note" class="form-control"></testarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Task</button>
+    </div>
+    </form>
 {% endblock %}
