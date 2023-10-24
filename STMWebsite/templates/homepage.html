@@ -2,16 +2,38 @@
 %}
 
 <h1 align="center">Tasks</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class = "list-group-item">{{ note.data }}</li>
-    {% endfor %}
-</ul>
-<form method = "POST">
-    <testarea name="note" id="note" class="form-control"></testarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Task</button>
+<body>
+    <div align="right">
+        <div class="text-box">
+            <textarea id="task-text1">{{ user.text1 }}</textarea>
+        </div>
+    
+        <div class="text-box">
+            <textarea id="task-text2">{{ user.text2 }}</textarea>
+        </div>
+
+        <div class="text-box">
+            <textarea id="task-text3">{{ user.text2 }}</textarea>
+        </div>
+
+        <div class="text-box">
+            <textarea id="task-text4">{{ user.text2 }}</textarea>
+        </div>
     </div>
-    </form>
+    <script>
+        document.querySelectorAll('textarea').forEach(function(textarea) {
+            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
+            textarea.addEventListener('input', function() {
+            var task = this.value;
+            updateText(this.id, task);
+        });
+    });
+
+
+    function updateText(textboxId, task) {
+        localStorage.setItem(textboxId, task);
+    }
+
+    </script>
+</body>
 {% endblock %}
