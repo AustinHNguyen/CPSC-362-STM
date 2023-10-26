@@ -1,17 +1,124 @@
 {% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content 
 %}
 
-<h1 align="center">Tasks</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class = "list-group-item">{{ note.data }}</li>
-    {% endfor %}
-</ul>
-<form method = "POST">
-    <testarea name="note" id="note" class="form-control"></testarea>
-    <br />
+<form>  
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add Task</button>
+        <input class="date" type="text" id="dateChosen" disabled>  
     </div>
-    </form>
+</form> 
+<body>
+    <div align="right">
+        <div class="text-box" id="task-text1">
+            <textarea rows="1" cols="50" id="task-text1">{{ user.text1 }}</textarea>
+        </div>
+    
+        <div class="text-box" id="task-text2">
+            <textarea rows="1" cols="50" id="task-text2">{{ user.text2 }}</textarea>
+        </div>
+
+        <div class="text-box" id="task-text3">
+            <textarea rows="1" cols="50" id="task-text3">{{ user.text3 }}</textarea>
+        </div>
+
+        <div class="text-box" id="task-text4">
+            <textarea rows="1" cols="50" id="task-text4">{{ user.text4 }}</textarea>
+        </div>
+
+    </div>
+    <script>
+        document.querySelectorAll('textarea').forEach(function(textarea) {
+            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
+            textarea.addEventListener('input', function() {
+            var task = this.value;
+            updateText(this.id, task);
+        });
+    });
+
+
+    function updateText(textboxId, task) {
+        localStorage.setItem(textboxId, task);
+    }
+
+    document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
+    </script>
+    <style>
+        textarea {
+            background-color: #191e3a;
+            color: white;
+            vertical-align: top;
+            margin-bottom: 15px;
+        }
+
+        input.date {
+            margin: 30px;
+            background-color: #191e3a;
+            color: white;
+            text-align: center;
+        }
+
+        #task-text1 {
+            position:relative;
+            display: block;
+        }
+
+        #task-text1::before {
+            top: 4px;
+            left: 550px;
+            content: '8 A.M.';
+            position: absolute;
+            font-size: 14px;
+            font-family: Arial;
+            font-weight: bold;
+            color: white;
+        }
+
+        #task-text2 {
+            position: relative;
+            display: block;
+        }
+
+        #task-text2::before {
+            top: 4px;
+            left: 550px;
+            content: '9 A.M.';
+            position: absolute;
+            font-size: 14px;
+            font-family: Arial;
+            font-weight: bold;
+            color: white;
+        }
+
+        #task-text3 {
+            position: relative;
+            display: block;
+        }
+
+        #task-text3::before {
+            top: 4px;
+            left: 550px;
+            content: '10 A.M.';
+            position: absolute;
+            font-size: 14px;
+            font-family: Arial;
+            font-weight: bold;
+            color: white;
+        }
+
+        #task-text4 {
+            position: relative;
+            display: block;
+        }
+
+        #task-text4::before {
+            top: 4px;
+            left: 550px;
+            content: '11 A.M.';
+            position: absolute;
+            font-size: 14px;
+            font-family: Arial;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</body>
 {% endblock %}
