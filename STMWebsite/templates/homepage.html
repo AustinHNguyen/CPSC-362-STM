@@ -154,7 +154,7 @@
         addEventContainer = document.querySelector(".add-event-wrapper"),
         addEventCloseBtn = document.querySelector(".close");
       
-        addEventBtn.addEventListerner("click", () => {
+        addEventBtn.addEventListener("click", () => {
             addEventContainer.classList.toggle("active");
         });
 
@@ -164,7 +164,7 @@
 
 
         document.querySelectorAll('add-event-input').forEach(function(div) {
-            .value = localStorage.getItem(textarea.id) || textarea.value;
+            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
             textarea.addEventListener('input', function() {
             var task = this.value;
             updateText(this.id, task);
@@ -671,8 +671,8 @@
 
         .add-event-body .add-event-input {
             width: 100%;
-            height 40px;
-            display flex;
+            height: 40px;
+            display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
@@ -699,7 +699,7 @@
         }
 
         .add-event-body .add-event-input input:focus::placeholder {
-            #191e3a
+            color: #191e3a;
         }
 
         .add-event-footer {
@@ -739,7 +739,7 @@
             justify-content: center;
             font-size: 1rem;
             color: black;
-            border: 20px solid black;
+            border: 2px solid black;
             opacity: 0.5;
             background-color: transparent;
             cursor: pointer;
