@@ -71,7 +71,7 @@
         <div class="text-box" id="task-text16">
             <textarea rows="1" cols="50" id="task-text16">{{ user.text16 }}</textarea>
         </div>
-
+        <div class="container">
         <div class="left">
             <div class="calendar">
                 <div class="month">
@@ -129,19 +129,42 @@
             </div>
         </div>
     </div>
+    <div class="add-event-wrapper">
         <div class="add-event-header">
-            <div class="title">Add Note</div>
-            <i class="fas fa-times close"></i>
+          <div class="title">Add Note</div>
+          <i class="fas fa-times close"></i>
         </div>
         <div class="add-event-body">
-            <div class="add-event-input">
-                <input type="text" placeholder="Type here" class="event-name"/>
-            </div>
+          <div class="add-event-input">
+            <input type="text" placeholder="Event Name" class="event-name" />
+          </div>
         </div>
-
+        <div class="add-event-footer">
+          <button class="add-event-btn">Add Note</button>
+        </div>
+      </div>
+    </div>
+    <button class="add-event">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+</div>
     <script>
-        document.querySelectorAll('textarea').forEach(function(textarea) {
-            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
+        const addEventBtn = document.querySelector(".add-event"),
+        addEventContainer = document.querySelector(".add-event-wrapper"),
+        addEventCloseBtn = document.querySelector(".close");
+      
+        addEventBtn.addEventListerner("click", () => {
+            addEventContainer.classList.toggle("active");
+        });
+
+        addEventCloseBtn.addEventListener("click", () => {
+            addEventContainer.classList.remove("active");
+        });
+
+
+        document.querySelectorAll('add-event-input').forEach(function(div) {
+            .value = localStorage.getItem(textarea.id) || textarea.value;
             textarea.addEventListener('input', function() {
             var task = this.value;
             updateText(this.id, task);
@@ -154,10 +177,90 @@
     }
 
     document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
+
+    const eventsArr = [];
+    getEvents();
+    console.log(eventsArr);
+
+    function saveEvents() {
+        localStorage.setItem("events", JSON.stringify(eventsArr));
+      }
+      
+      function getEvents() {
+        if (localStorage.getItem("events") === null) {
+          return;
+        }
+        eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+      }
+
+      function updateEvents(date) {
+        let events = "";
+        eventsArr.forEach((event) => {
+          if (
+            date === event.day &&
+            month + 1 === event.month &&
+            year === event.year
+          ) {
+            event.events.forEach((event) => {
+              events += `<div class="event">
+                  <div class="title">
+                    <i class="fas fa-circle"></i>
+                    <h3 class="event-title">${event.title}</h3>
+                  </div>
+                  <div class="event-time">
+                    <span class="event-time">${event.time}</span>
+                  </div>
+              </div>`;
+            });
+          }
+        });
+        if (events === "") {
+          events = `<div class="no-event">
+                  <h3>No Events</h3>
+              </div>`;
+        }
+        eventsContainer.innerHTML = events;
+        saveEvents();
+      }
+    
+      //function to delete event when clicked on event
+    eventsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("event")) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        const eventTitle = e.target.children[0].children[1].innerHTML;
+        eventsArr.forEach((event) => {
+          if (
+            event.day === activeDay &&
+            event.month === month + 1 &&
+            event.year === year
+          ) {
+            event.events.forEach((item, index) => {
+              if (item.title === eventTitle) {
+                event.events.splice(index, 1);
+              }
+            });
+            //if no events left in a day then remove that day from eventsArr
+            if (event.events.length === 0) {
+              eventsArr.splice(eventsArr.indexOf(event), 1);
+              //remove event class from day
+              const activeDayEl = document.querySelector(".day.active");
+              if (activeDayEl.classList.contains("event")) {
+                activeDayEl.classList.remove("event");
+              }
+            }
+          }
+        });
+        updateEvents(activeDay);
+      }
+    }
+  });
     </script>
 
-    <script src="script.js"></script>
     <style>
+        :root {
+            --primary-clr: #191e3a;
+        }
+
         textarea {
             background-color: #191e3a;
             color: white;
@@ -514,6 +617,11 @@
             background-color: #182d4f;
         }
 
+
+        .add-event-wrapper.active {
+            max-height: 300px;
+        }
+
         .add-event-wrapper {
             position: absolute;
             bottom: 100px;
@@ -523,7 +631,8 @@
             border-radius: 5px;
             background-color: #fff;
             transform: translateX(-50%);
-            transition: max-height 0.5s;
+            transition: max-height 0.5s ease;
+            max-height: 0px;
         }
 
         .add-event-header {
@@ -535,6 +644,20 @@
             padding: 0 20px;
             color: #373c4f;
             border-bottom: 1px solid #f5f5f5;
+        }
+
+        .add-event-header .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .add-event-header .close:hover {
+            color: #191e3a;
+        }
+
+        .add-event-header .title {
+            font-size: 1.2rem;
+            font-weight: 500;
         }
 
         .add-event-body {
@@ -558,6 +681,77 @@
         .add-event-body .add-event-input input {
             width: 100%;
             height: 100%;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #f5f5f5;
+            padding: 0 10px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #373c4f;
+        }
+
+        .add-event-body .add-event-input input::placeholder {
+            color: #a5a5a5;
+        }
+        
+        .add-event-body .add-event-input input:focus {
+            border-bottom: 1px solid #191e3a;
+        }
+
+        .add-event-body .add-event-input input:focus::placeholder {
+            #191e3a
+        }
+
+        .add-event-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .add-event-btn {
+            height: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            outline: none;
+            border: none;
+            color: white;
+            background-color: #191e3a;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #191e3a;
+        }
+
+        .add-event-btn:hover {
+            color: #191e3a;
+            background-color: transparent;
+        }
+
+        .add-event {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: black;
+            border: 20px solid black;
+            opacity: 0.5;
+            background-color: transparent;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .add-event:hover {
+            opacity: 1;
+        }
+
+        .add-event i {
+            pointer-events: none;
         }
     </style>
 </body>
