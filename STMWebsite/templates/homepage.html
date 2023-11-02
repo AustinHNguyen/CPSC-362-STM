@@ -163,7 +163,7 @@
         });
 
 
-        document.querySelectorAll('add-event-input').forEach(function(div) {
+        document.querySelectorAll('textarea').forEach(function(textarea) {
             textarea.value = localStorage.getItem(textarea.id) || textarea.value;
             textarea.addEventListener('input', function() {
             var task = this.value;
