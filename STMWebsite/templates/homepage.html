@@ -1,812 +1,739 @@
 {% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content 
-%}
-
-<form>  
-    <div align="center">
-        <input class="date" type="text" id="dateChosen" disabled>  
-    </div>
-</form> 
-<body>
-    <div align="right">
-        <div class="text-box" id="task-text1">
-            <textarea rows="1" cols="50" id="task-text1">{{ user.text1 }}</textarea>
-        </div>
+    %}
     
-        <div class="text-box" id="task-text2">
-            <textarea rows="1" cols="50" id="task-text2">{{ user.text2 }}</textarea>
+    <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+    </head>
+    
+    <form>  
+        <div align="center">
+            <input class="date" type="text" id="dateChosen" disabled>  
         </div>
-
-        <div class="text-box" id="task-text3">
-            <textarea rows="1" cols="50" id="task-text3">{{ user.text3 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text4">
-            <textarea rows="1" cols="50" id="task-text4">{{ user.text4 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text5">
-            <textarea rows="1" cols="50" id="task-text5">{{ user.text5 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text6">
-            <textarea rows="1" cols="50" id="task-text6">{{ user.text6 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text7">
-            <textarea rows="1" cols="50" id="task-text7">{{ user.text7 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text8">
-            <textarea rows="1" cols="50" id="task-text8">{{ user.text8 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text9">
-            <textarea rows="1" cols="50" id="task-text9">{{ user.text9 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text10">
-            <textarea rows="1" cols="50" id="task-text10">{{ user.text10 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text11">
-            <textarea rows="1" cols="50" id="task-text11">{{ user.text11 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text12">
-            <textarea rows="1" cols="50" id="task-text12">{{ user.text12 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text13">
-            <textarea rows="1" cols="50" id="task-text13">{{ user.text13 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text14">
-            <textarea rows="1" cols="50" id="task-text14">{{ user.text14 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text15">
-            <textarea rows="1" cols="50" id="task-text15">{{ user.text15 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text16">
-            <textarea rows="1" cols="50" id="task-text16">{{ user.text16 }}</textarea>
-        </div>
+    </form> 
+    <body>
         <div class="container">
-        <div class="left">
-            <div class="calendar">
-                <div class="month">
-                    <i class="fa fa-angle-left prev"></i>
-                    <div class="date">November 2023</div>
-                    <i class="fa fa-angle-right next"></i>
+        <div align="right">
+            <div class="today-date">
+                <div class="event-day">Wed</div>
+                <div class="event-date">16 November 2022</div>
+            </div>
+            <div class="events">
+                <div class="event">
+                    <div class="title">
+                        <i class="fa-solid fa-circle"></i>
+                        <h3 class="event-title">Event 1</h3>
+                    </div>
+                    <div class="event-time">10:00AM - 12:00PM</div>
                 </div>
-                <div class="weekdays">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
+            </div>
+            
+            <div class="left">
+                <div class="calendar">
+                    <div class="month">
+                        <i class="fa fa-angle-left prev"></i>
+                        <div class="date">November 2023</div>
+                        <i class="fa fa-angle-right next"></i>
+                    </div>
+                    <div class="weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    <div class="days">
+                        <div class="day prev-date">30</div>
+                        <div class="day prev-date">31</div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day">10</div>
+                        <div class="day">11</div>
+                        <div class="day">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day">19</div>
+                        <div class="day">20</div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                        <div class="day">29</div>
+                        <div class="day">30</div>
+                        <div class="day next-date">1</div>
+                        <div class="day next-date">2</div>
+                        <div class="day next-date">3</div>
+                    </div>
+                    <div class="tasks"></div>
                 </div>
-                <div class="days">
-                    <div class="day prev-date">30</div>
-                    <div class="day prev-date">31</div>
-                    <div class="day">1</div>
-                    <div class="day">2</div>
-                    <div class="day">3</div>
-                    <div class="day">4</div>
-                    <div class="day">5</div>
-                    <div class="day">6</div>
-                    <div class="day">7</div>
-                    <div class="day">8</div>
-                    <div class="day">9</div>
-                    <div class="day">10</div>
-                    <div class="day">11</div>
-                    <div class="day">12</div>
-                    <div class="day">13</div>
-                    <div class="day">14</div>
-                    <div class="day">15</div>
-                    <div class="day">16</div>
-                    <div class="day">17</div>
-                    <div class="day">18</div>
-                    <div class="day">19</div>
-                    <div class="day">20</div>
-                    <div class="day">21</div>
-                    <div class="day">22</div>
-                    <div class="day">23</div>
-                    <div class="day">24</div>
-                    <div class="day">25</div>
-                    <div class="day">26</div>
-                    <div class="day">27</div>
-                    <div class="day">28</div>
-                    <div class="day">29</div>
-                    <div class="day">30</div>
-                    <div class="day next-date">1</div>
-                    <div class="day next-date">2</div>
-                    <div class="day next-date">3</div>
-                </div>
-                <div class="tasks"></div>
             </div>
         </div>
-    </div>
-    <div class="add-event-wrapper">
-        <div class="add-event-header">
-          <div class="title">Add Note</div>
-          <i class="fas fa-times close"></i>
-        </div>
-        <div class="add-event-body">
-          <div class="add-event-input">
-            <input type="text" placeholder="Event Name" class="event-name" />
+        <div class="add-event-wrapper">
+            <div class="add-event-header">
+              <div class="title">Add Note</div>
+              <i class="fas fa-times close"></i>
+            </div>
+            <div class="add-event-body">
+              <div class="add-event-input">
+                <input type="text" placeholder="Type note here" class="event-name" />
+              </div>
+              <div class="add-event-input">
+                <input type="text" placeholder="Start time" class="event-time-from" />
+              </div>
+              <div class="add-event-input">
+                <input type="text" placeholder="End time" class="event-time-to" />
+              </div>
+            </div>
+            <div class="add-event-footer">
+              <button class="add-event-btn">Add Note</button>
+            </div>
           </div>
         </div>
-        <div class="add-event-footer">
-          <button class="add-event-btn">Add Note</button>
-        </div>
+        <button class="add-event">
+          <i class="fas fa-plus"></i>
+        </button>
       </div>
     </div>
-    <button class="add-event">
-      <i class="fas fa-plus"></i>
-    </button>
-  </div>
-</div>
-    <script>
-        const addEventBtn = document.querySelector(".add-event"),
-        addEventContainer = document.querySelector(".add-event-wrapper"),
-        addEventCloseBtn = document.querySelector(".close");
-      
-        addEventBtn.addEventListener("click", () => {
-            addEventContainer.classList.toggle("active");
-        });
-
-        addEventCloseBtn.addEventListener("click", () => {
-            addEventContainer.classList.remove("active");
-        });
-
-
-        document.querySelectorAll('textarea').forEach(function(textarea) {
-            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
-            textarea.addEventListener('input', function() {
-            var task = this.value;
-            updateText(this.id, task);
-        });
-    });
-
-
-    function updateText(textboxId, task) {
-        localStorage.setItem(textboxId, task);
-    }
-
-    document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
-
-    const eventsArr = [];
-    getEvents();
-    console.log(eventsArr);
-
-    function saveEvents() {
-        localStorage.setItem("events", JSON.stringify(eventsArr));
-      }
-      
-      function getEvents() {
-        if (localStorage.getItem("events") === null) {
-          return;
-        }
-        eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-      }
-
-      function updateEvents(date) {
-        let events = "";
-        eventsArr.forEach((event) => {
-          if (
-            date === event.day &&
-            month + 1 === event.month &&
-            year === event.year
-          ) {
-            event.events.forEach((event) => {
-              events += `<div class="event">
-                  <div class="title">
-                    <i class="fas fa-circle"></i>
-                    <h3 class="event-title">${event.title}</h3>
-                  </div>
-                  <div class="event-time">
-                    <span class="event-time">${event.time}</span>
-                  </div>
-              </div>`;
+        <script>
+            const addEventBtn = document.querySelector(".add-event"),
+            addEventContainer = document.querySelector(".add-event-wrapper"),
+            addEventCloseBtn = document.querySelector(".close");
+            addEventTitle = document.querySelector(".event-name");
+            addEventFrom = document.querySelector(".event-time-from");
+            addEventTo = document.querySelector(".event-time-to");
+          
+            addEventBtn.addEventListener("click", () => {
+                addEventContainer.classList.toggle("active");
             });
-          }
-        });
-        if (events === "") {
-          events = `<div class="no-event">
-                  <h3>No Events</h3>
-              </div>`;
-        }
-        eventsContainer.innerHTML = events;
-        saveEvents();
-      }
     
-      //function to delete event when clicked on event
-    eventsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("event")) {
-      if (confirm("Are you sure you want to delete this event?")) {
-        const eventTitle = e.target.children[0].children[1].innerHTML;
-        eventsArr.forEach((event) => {
-          if (
-            event.day === activeDay &&
-            event.month === month + 1 &&
-            event.year === year
-          ) {
-            event.events.forEach((item, index) => {
-              if (item.title === eventTitle) {
-                event.events.splice(index, 1);
+            addEventCloseBtn.addEventListener("click", () => {
+                addEventContainer.classList.remove("active");
+            });
+    
+    
+            document.querySelectorAll('textarea').forEach(function(textarea) {
+                textarea.value = localStorage.getItem(textarea.id) || textarea.value;
+                textarea.addEventListener('input', function() {
+                var task = this.value;
+                updateText(this.id, task);
+            });
+        });
+    
+        document.addEventListener("click", (e) => {
+            if (e.target != addEventBtn && !addEventContainer.contains(e.target)) {
+                addEventContainer.classList.remove("active");
+            }
+        });
+
+        addEventFrom.addEventListener("input", (e) => {
+            addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+        });
+
+        addEventTo.addEventListener("input", (e) => {
+            addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+        });
+    
+        function updateText(textboxId, task) {
+            localStorage.setItem(textboxId, task);
+        }
+    
+        document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
+    
+        const eventsArr = [
+        {
+            day: 13,
+            month: 11,
+            year: 2022,
+            events: [
+                {
+                    title: "Event 1 yes",
+                    time: "10AM",
+                },
+                {
+                    title: "Event 2 no",
+                    time: "11PM",
+                },
+            ],
+        },
+    ];
+        getEvents();
+        console.log(eventsArr);
+    
+        function saveEvents() {
+            localStorage.setItem("events", JSON.stringify(eventsArr));
+          }
+          
+          function getEvents() {
+            if (localStorage.getItem("events") === null) {
+              return;
+            }
+            eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+          }
+    
+          function updateEvents(date) {
+            let events = "";
+            eventsArr.forEach((event) => {
+              if (
+                date === event.day &&
+                month + 1 === event.month &&
+                year === event.year
+              ) {
+                event.events.forEach((event) => {
+                  events += `<div class="event">
+                      <div class="title">
+                        <i class="fas fa-circle"></i>
+                        <h3 class="event-title">${event.title}</h3>
+                      </div>
+                      <div class="event-time">
+                        <span class="event-time">${event.time}</span>
+                      </div>
+                  </div>`;
+                });
               }
             });
-            //if no events left in a day then remove that day from eventsArr
-            if (event.events.length === 0) {
-              eventsArr.splice(eventsArr.indexOf(event), 1);
-              //remove event class from day
-              const activeDayEl = document.querySelector(".day.active");
-              if (activeDayEl.classList.contains("event")) {
-                activeDayEl.classList.remove("event");
-              }
+    
+            if (events === "") {
+              events = `<div class="no-event">
+                      <h3>No Events</h3>
+                  </div>`;
             }
+            eventsContainer.innerHTML = events;
+            saveEvents();
           }
-        });
-        updateEvents(activeDay);
-      }
-    }
-
-    function initCalendar() {
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        const prevLastDay = new Date(year, month, 0)
-        const prevDays = prevLastDay.getDate();
-        const lastDate = lastDay.getDate();
-        const day = firstDay.getDay();
-        const nextDays = 7 - lastDay.getDay() - 1;
         
-        date.innerHTML = months[month] + " " + year;
-        let days = "";
-        for (let x = day; x > 0; x--) {
-            days += `<div class="day prev-date" >${prevDays - x + 1}</div>`;
-        }
-        for (let i = 1; i <= lastDate; i++) {
-            if (
-                i == new Date().getDate() && 
-                year == new Date.getFullYear() && 
-                month == new Date.getMonth()
-            ) {
-              days += `<div class="day today" >${i}</div>`;
+          
+        const calendar = document.querySelector(".calendar"),
+        date = document.querySelector(".date"),
+        daysContainer = document.querySelector(".days"),
+        prev = document.querySelector(".prev"),
+        next = document.querySelector(".next");
+    
+        const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+        ];
+
+        function initCalendar() {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const prevLastDay = new Date(year, month, 0);
+            const prevDays = prevLastDay.getDate();
+            const lastDate = lastDay.getDate();
+            const day = firstDay.getDay();
+            const nextDays = 7 - lastDay.getDay() - 1;
+            
+            date.innerHTML = months[month] + " " + year;
+            let days = "";
+            for (let x = day; x > 0; x--) {
+                days += `<div class="day prev-date" >${prevDays - x + 1}</div>`;
             }
-            else {
-                days += `<div class="day " >${i}</div>`;
+            for (let i = 1; i <= lastDate; i++) {
+
+                let event = false;
+                eventsArr.forEach((eventObj) => {
+                    if(eventObj.day == i && eventObj.month == month + 1 && eventObj.year == year) {
+                        event = true;
+                    }
+                });
+
+                if (
+                    i == new Date().getDate() && 
+                    year == new Date().getFullYear() && 
+                    month == new Date().getMonth()
+                ) {
+                    if (event) {
+                        days += `<div class="day today active event" >${i}</div>`;
+                    }
+                    else {
+                        days += `<div class="day today active" >${i}</div>`;
+                    }
+                  
+                }
+                else {
+                    if (event) {
+                        days += `<div class="day event" >${i}</div>`;
+                    }
+                    else {
+                        days += `<div class="day" >${i}</div>`;
+                    }
+                }
             }
-        }
-        for (let j = 1; j <= nextDays; j++) {
-            days += `<div class="day next-date " >${j}</div>`;
-        }
-        daysContainer.innerHTML = days;
-    }
+            for (let j = 1; j <= nextDays; j++) {
+                days += `<div class="day next-date " >${j}</div>`;
+            }
+            daysContainer.innerHTML = days;
 
-    function prevMonth() {
-        month--;
-        if (month < 0) {
-            month = 11;
-            year--;
+            addListener();
         }
+
         initCalendar();
-    }
-
-    function nextMonth() {
-        month++;
-        if (month > 11) {
-            month = 0;
-            year++;
+    
+        function prevMonth() {
+            month--;
+            if (month < 0) {
+                month = 11;
+                year--;
+            }
+            initCalendar();
         }
-        initCalendar();
-    }
-    prev.addEventListener("click", prevMonth)
-    next.addEventListener("click", nextMonth)
-
-
-  });
-    </script>
-
-    <style>
-        :root {
-            --primary-clr: #191e3a;
+    
+        function nextMonth() {
+            month++;
+            if (month > 11) {
+                month = 0;
+                year++;
+            }
+            initCalendar();
         }
+        prev.addEventListener("click", prevMonth);
+        next.addEventListener("click", nextMonth);
 
-        textarea {
-            background-color: #191e3a;
-            color: white;
-            vertical-align: top;
-            margin-bottom: 15px;
-        }
-
-        input.date {
-            margin: 30px;
-            background-color: #191e3a;
-            color: white;
-            text-align: center;
-        }
-
-        #task-text1 {
-            position:relative;
-            display: block;
-        }
-
-        #task-text1::before {
-            top: 4px;
-            left: 550px;
-            content: '8 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text2 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text2::before {
-            top: 4px;
-            left: 550px;
-            content: '9 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
+        function addListener() {
+            const days = document.querySelectorAll(".day");
+            days.forEach((day) => {
+                day.addEventListener("click" , (e) => {
+                    activeDay = Number(e.target.innerHTML);
+                    getActiveDay(e.target.innerHTML);
+                    days.forEach((day) => {
+                        day.classList.remove("active");
+                    });
+                    if(e.target.classList.contains("prev-date")) {
+                        prevMonth();
+                        setTimeout(() => {
+                            const days = document.querySelectorAll(".day");
+                            days.forEach((day) => {
+                                if(!day.classList.contains("prev-date") && day.innerHTML == e.target.innerHTML) {
+                                    day.classList.add("active");
+                                }
+                            });
+                        }, 90);
+                    } 
+                    else if(e.target.classList.contains("next-date")) {
+                            nextMonth();
+                            setTimeout(() => {
+                                const days = document.querySelectorAll(".day");
+                                days.forEach((day) => {
+                                    if(!day.classList.contains("next-date") && day.innerHTML == e.target.innerHTML) {
+                                        day.classList.add("active");
+                                    }
+                                });
+                        }, 90);
+                    }
+                    else {
+                        e.target.classList.add("active");
+                    }
+                });
+            });
         }
 
-        #task-text3 {
-            position: relative;
-            display: block;
-        }
+        const eventDay = document.querySelector(".event-day"),
+        eventDate = document.querySelector(".event-date");
 
-        #task-text3::before {
-            top: 4px;
-            left: 550px;
-            content: '10 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
+        function getActiveDay(date) {
+            const day = new Date(year, month, date);
+            const dayName = day.toString().split(" ")[0];
+            eventDay.innerHTML = dayName;
+            eventDate.innerHTML = date + " " + months(month) + " " + year;
         }
-
-        #task-text4 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text4::before {
-            top: 4px;
-            left: 550px;
-            content: '11 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text5 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text5::before {
-            top: 4px;
-            left: 550px;
-            content: '12 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text6 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text6::before {
-            top: 4px;
-            left: 550px;
-            content: '1 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-        
-        #task-text7 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text7::before {
-            top: 4px;
-            left: 550px;
-            content: '2 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text8 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text8::before {
-            top: 4px;
-            left: 550px;
-            content: '3 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text9 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text9::before {
-            top: 4px;
-            left: 550px;
-            content: '4 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text10 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text10::before {
-            top: 4px;
-            left: 550px;
-            content: '5 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text11 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text11::before {
-            top: 4px;
-            left: 550px;
-            content: '6 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text12 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text12::before {
-            top: 4px;
-            left: 550px;
-            content: '7 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text13 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text13::before {
-            top: 4px;
-            left: 550px;
-            content: '8 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text14 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text14::before {
-            top: 4px;
-            left: 550px;
-            content: '9 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text15 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text15::before {
-            top: 4px;
-            left: 550px;
-            content: '10 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text16 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text16::before {
-            top: 4px;
-            left: 550px;
-            content: '11 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .calendar {
-            position: relative;
-            right: 630px;
-            bottom: 720px;
-            width: 40%;
-            height: 100%;
-            color: #878895;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-        .calendar .month .prev,
-        .calendar .month .next {
-        cursor: pointer;
-        }
-        .calendar .weekdays {
-            width: 100%;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-        .calendar .weekdays div {
-            width: 14%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .calendar .days {
-            width: 100%;
-            font-size: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-        .calendar .days .day {
-            width: 14%;
-            height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        </script>
+    
+        <style>
+            :root {
+                --primary-clr: #191e3a;
+            }
+    
+            textarea {
+                background-color: #191e3a;
+                color: white;
+                vertical-align: top;
+                margin-bottom: 15px;
+            }
+    
+            input.date {
+                margin: 30px;
+                background-color: #191e3a;
+                color: white;
+                text-align: center;
+            }
+    
+            
+            .calendar {
+                position: relative;
+                right: 630px;
+                bottom: 720px;
+                width: 40%;
+                height: 100%;
+                color: #878895;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                border-radius: 5px;
+                background-color: #fff;
+            }
+            .calendar .month .prev,
+            .calendar .month .next {
             cursor: pointer;
-        }
-        .calendar .month {
-            width: 100%;
-            height: 150px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 50px;
-        }
-        .calendar .day:not(.prev-date, .next-date):hover {
-            color:#fff;
-            background-color:#182d4f;
-        }
-        .calendar .days .prev-date,
-        .calendar .days .next-date {
-            color: #b6b6b6
-        }
-        .calendar .days .active {
-            position: relative;
-            font-size: 2rem;
-            color: #fff;
-            background-color: #182d4f;
-        }
-        .calendar .days .event {
-            position: relative;
-        }
-        .calendar .days .event::after {
-            content: "";
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            width: 75%;
-            height: 6px;
-            border-radius: 30px;
-            transform: translateX(-50%);
-            background-color: #182d4f;
-        }
+            }
+            .calendar .weekdays {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+            .calendar .weekdays div {
+                width: 14%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .calendar .days {
+                width: 100%;
+                font-size: 1rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+            .calendar .days .day {
+                width: 14%;
+                height: 90px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            .calendar .month {
+                width: 100%;
+                height: 150px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 50px;
+            }
+            .calendar .day:not(.prev-date, .next-date):hover {
+                color:#fff;
+                background-color:#182d4f;
+            }
+            .calendar .days .prev-date,
+            .calendar .days .next-date {
+                color: #b6b6b6
+            }
+            .calendar .days .active {
+                position: relative;
+                font-size: 2rem;
+                color: #fff;
+                background-color: #182d4f;
+            }
+            .calendar .days .event {
+                position: relative;
+            }
+            .calendar .days .event::after {
+                content: "";
+                position: absolute;
+                bottom: 10%;
+                left: 50%;
+                width: 75%;
+                height: 6px;
+                border-radius: 30px;
+                transform: translateX(-50%);
+                background-color: #182d4f;
+            }
+    
+    
+            .add-event-wrapper.active {
+                max-height: 300px;
+            }
+    
+            .add-event-wrapper {
+                position: absolute;
+                bottom: 100px;
+                left: 50%;
+                width: 90%;
+                overflow: hidden;
+                border-radius: 5px;
+                background-color: #fff;
+                transform: translateX(-50%);
+                transition: max-height 0.5s ease;
+                max-height: 0px;
+            }
+    
+            .add-event-header {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
+                color: #373c4f;
+                border-bottom: 1px solid #f5f5f5;
+            }
+    
+            .add-event-header .close {
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+    
+            .add-event-header .close:hover {
+                color: #191e3a;
+            }
+    
+            .add-event-header .title {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+    
+            .add-event-body {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                padding: 20px;
+            }
+    
+            .add-event-body .add-event-input {
+                width: 100%;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+            }
+    
+            .add-event-body .add-event-input input {
+                width: 100%;
+                height: 100%;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #f5f5f5;
+                padding: 0 10px;
+                font-size: 1rem;
+                font-weight: 400;
+                color: #373c4f;
+            }
+    
+            .add-event-body .add-event-input input::placeholder {
+                color: #a5a5a5;
+            }
+            
+            .add-event-body .add-event-input input:focus {
+                border-bottom: 1px solid #191e3a;
+            }
+    
+            .add-event-body .add-event-input input:focus::placeholder {
+                color: #191e3a;
+            }
+    
+            .add-event-footer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+    
+            .add-event-btn {
+                height: 40px;
+                font-size: 1rem;
+                font-weight: 500;
+                outline: none;
+                border: none;
+                color: white;
+                background-color: #191e3a;
+                border-radius: 5px;
+                cursor: pointer;
+                padding: 5px 10px;
+                border: 1px solid #191e3a;
+            }
+    
+            .add-event-btn:hover {
+                color: #191e3a;
+                background-color: transparent;
+            }
+    
+            .add-event {
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                color: black;
+                border: 2px solid black;
+                opacity: 0.5;
+                background-color: transparent;
+                cursor: pointer;
+                border-radius: 50%;
+            }
+    
+            .add-event:hover {
+                opacity: 1;
+            }
+    
+            .add-event i {
+                pointer-events: none;
+            }
+    
+            .container {
+                position: relative;
+                color: white;
+            }
+    
+            .container .right {
+                position: relative;
+                width: 40%;
+                min-height: 100%;
+                padding: 20px 0;
+            }
+    
+            .right .today-date {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 40px;
+                padding-left: 70px;
+                margin-top: 50px;
+                margin-bottom: 20px;
+                text-transform: capitalize;
+            }
+    
+            .today-date .event-day {
+                font-size: 2rem;
+                font-weight: 500;
+                padding-right: 140px;
+            }
+    
+            .today-date .event-date {
+                font-size: 1rem;
+                font-weight: 400;
+                color: #ccc6c6;
+                padding-right: 100px;
+            }
+    
+            .events {
+                width: 100%;
+                height: 100%;
+                max-height: 600px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+            }
+    
+            .events .event {
+                position: relative;
+                width: 95%;
+                min-height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 5px;
+                padding: 0 20px;
+                padding-left: 800px;
+                color: white;
+                cursor: pointer;
+                background: linear-gradient(10deg, #3f4458, transparent);
+                background-size: cover;
+                background-attachment: local;
+            }
+            .events .event .title {
+                display: flex;
+                align-items: center;
+                pointer-events: none;
+                gap: 10px;
+            }
+    
+            .events .event .title .event-title {
+                font-size: 1.5rem;
+                font-weight: 400;
+            }
+    
+            .events .event .title i {
+                color: var(--primary-clr);
+                    font-size: .75rem;
+            }
+    
+            .events .event:hover .title i {
+                color: white;
+            }
+    
+            .events .event:hover {
+                background: linear-gradient(10deg, var(--primary-clr), transparent);
+            }
+    
+            .events .event:hover .title i,
+            .events .event:hover .event-title {
+                color: #e6b232;
+            }
+    
+            .events .event .event-time {
+                font-size: 0.8rem;
+                font-weight: 400;
+                color: #e6b232;
+                margin-left: 15px;
+                pointer-events: none;
+            }
+    
+            .events .event::after {
+                content: "✔";
+                position: absolute;
+                top: 50%;
+                right: 0;
+                font-size: 2.5rem;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: green;
+                transform: translateY(-50%);
+            }
+    
+            .events .event:hover::after {
+                display: flex;
+            }
 
-
-        .add-event-wrapper.active {
-            max-height: 300px;
-        }
-
-        .add-event-wrapper {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            width: 90%;
-            overflow: hidden;
-            border-radius: 5px;
-            background-color: #fff;
-            transform: translateX(-50%);
-            transition: max-height 0.5s ease;
-            max-height: 0px;
-        }
-
-        .add-event-header {
-            width: 100%;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            color: #373c4f;
-            border-bottom: 1px solid #f5f5f5;
-        }
-
-        .add-event-header .close {
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .add-event-header .close:hover {
-            color: #191e3a;
-        }
-
-        .add-event-header .title {
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .add-event-body {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 20px;
-        }
-
-        .add-event-body .add-event-input {
-            width: 100%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .add-event-body .add-event-input input {
-            width: 100%;
-            height: 100%;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid #f5f5f5;
-            padding: 0 10px;
-            font-size: 1rem;
-            font-weight: 400;
-            color: #373c4f;
-        }
-
-        .add-event-body .add-event-input input::placeholder {
-            color: #a5a5a5;
-        }
-        
-        .add-event-body .add-event-input input:focus {
-            border-bottom: 1px solid #191e3a;
-        }
-
-        .add-event-body .add-event-input input:focus::placeholder {
-            color: #191e3a;
-        }
-
-        .add-event-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .add-event-btn {
-            height: 40px;
-            font-size: 1rem;
-            font-weight: 500;
-            outline: none;
-            border: none;
-            color: white;
-            background-color: #191e3a;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 5px 10px;
-            border: 1px solid #191e3a;
-        }
-
-        .add-event-btn:hover {
-            color: #191e3a;
-            background-color: transparent;
-        }
-
-        .add-event {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: black;
-            border: 2px solid black;
-            opacity: 0.5;
-            background-color: transparent;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .add-event:hover {
-            opacity: 1;
-        }
-
-        .add-event i {
-            pointer-events: none;
-        }
-    </style>
-</body>
-{% endblock %}
+        </style>
+    </body>
+    {% endblock %}
