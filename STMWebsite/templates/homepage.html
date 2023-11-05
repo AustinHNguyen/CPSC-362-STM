@@ -76,7 +76,7 @@
             <div class="calendar">
                 <div class="month">
                     <i class="fa fa-angle-left prev"></i>
-                    <div class="date">November 2023</div>
+                    <div class="date"></div>
                     <i class="fa fa-angle-right next"></i>
                 </div>
                 <div class="weekdays">
@@ -88,44 +88,7 @@
                     <div>Fri</div>
                     <div>Sat</div>
                 </div>
-                <div class="days">
-                    <div class="day prev-date">30</div>
-                    <div class="day prev-date">31</div>
-                    <div class="day">1</div>
-                    <div class="day">2</div>
-                    <div class="day">3</div>
-                    <div class="day">4</div>
-                    <div class="day">5</div>
-                    <div class="day">6</div>
-                    <div class="day">7</div>
-                    <div class="day">8</div>
-                    <div class="day">9</div>
-                    <div class="day">10</div>
-                    <div class="day">11</div>
-                    <div class="day">12</div>
-                    <div class="day">13</div>
-                    <div class="day">14</div>
-                    <div class="day">15</div>
-                    <div class="day">16</div>
-                    <div class="day">17</div>
-                    <div class="day">18</div>
-                    <div class="day">19</div>
-                    <div class="day">20</div>
-                    <div class="day">21</div>
-                    <div class="day">22</div>
-                    <div class="day">23</div>
-                    <div class="day">24</div>
-                    <div class="day">25</div>
-                    <div class="day">26</div>
-                    <div class="day">27</div>
-                    <div class="day">28</div>
-                    <div class="day">29</div>
-                    <div class="day">30</div>
-                    <div class="day next-date">1</div>
-                    <div class="day next-date">2</div>
-                    <div class="day next-date">3</div>
-                </div>
-                <div class="tasks"></div>
+                <div class="days"></div>
             </div>
         </div>
     </div>
@@ -150,141 +113,61 @@
   </div>
 </div>
     <script>
-        const addEventBtn = document.querySelector(".add-event"),
-        addEventContainer = document.querySelector(".add-event-wrapper"),
-        addEventCloseBtn = document.querySelector(".close");
-      
-        addEventBtn.addEventListener("click", () => {
-            addEventContainer.classList.toggle("active");
-        });
+    const calendar = document.querySelector(".calendar"),
+        date = document.querySelector(".date"),
+        daysContainer = document.querySelector(".days"),
+        prev = document.querySelector(".prev");
+            next = document.querySelector(".next");
 
-        addEventCloseBtn.addEventListener("click", () => {
-            addEventContainer.classList.remove("active");
-        });
+    let today = new Date();
+    let activeDay;
+    let month = today.getMonth();
+    let year = today.getFullYear();
 
-
-        document.querySelectorAll('textarea').forEach(function(textarea) {
-            textarea.value = localStorage.getItem(textarea.id) || textarea.value;
-            textarea.addEventListener('input', function() {
-            var task = this.value;
-            updateText(this.id, task);
-        });
-    });
-
-
-    function updateText(textboxId, task) {
-        localStorage.setItem(textboxId, task);
-    }
-
-    document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
-
-    const eventsArr = [];
-    getEvents();
-    console.log(eventsArr);
-
-    function saveEvents() {
-        localStorage.setItem("events", JSON.stringify(eventsArr));
-      }
-      
-      function getEvents() {
-        if (localStorage.getItem("events") === null) {
-          return;
-        }
-        eventsArr.push(...JSON.parse(localStorage.getItem("events")));
-      }
-
-      function updateEvents(date) {
-        let events = "";
-        eventsArr.forEach((event) => {
-          if (
-            date === event.day &&
-            month + 1 === event.month &&
-            year === event.year
-          ) {
-            event.events.forEach((event) => {
-              events += `<div class="event">
-                  <div class="title">
-                    <i class="fas fa-circle"></i>
-                    <h3 class="event-title">${event.title}</h3>
-                  </div>
-                  <div class="event-time">
-                    <span class="event-time">${event.time}</span>
-                  </div>
-              </div>`;
-            });
-          }
-        });
-        if (events === "") {
-          events = `<div class="no-event">
-                  <h3>No Events</h3>
-              </div>`;
-        }
-        eventsContainer.innerHTML = events;
-        saveEvents();
-      }
-    
-      //function to delete event when clicked on event
-    eventsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("event")) {
-      if (confirm("Are you sure you want to delete this event?")) {
-        const eventTitle = e.target.children[0].children[1].innerHTML;
-        eventsArr.forEach((event) => {
-          if (
-            event.day === activeDay &&
-            event.month === month + 1 &&
-            event.year === year
-          ) {
-            event.events.forEach((item, index) => {
-              if (item.title === eventTitle) {
-                event.events.splice(index, 1);
-              }
-            });
-            //if no events left in a day then remove that day from eventsArr
-            if (event.events.length === 0) {
-              eventsArr.splice(eventsArr.indexOf(event), 1);
-              //remove event class from day
-              const activeDayEl = document.querySelector(".day.active");
-              if (activeDayEl.classList.contains("event")) {
-                activeDayEl.classList.remove("event");
-              }
-            }
-          }
-        });
-        updateEvents(activeDay);
-      }
-    }
-
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
     function initCalendar() {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
-        const prevLastDay = new Date(year, month, 0)
+        const prevLastDay = new Date(year, month, 0);
         const prevDays = prevLastDay.getDate();
         const lastDate = lastDay.getDate();
         const day = firstDay.getDay();
-        const nextDays = 7 - lastDay.getDay() - 1;
+        const nextDays = 7 - lastDay.getDay() - 1;  
         
         date.innerHTML = months[month] + " " + year;
         let days = "";
         for (let x = day; x > 0; x--) {
-            days += `<div class="day prev-date" >${prevDays - x + 1}</div>`;
+            days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
         }
         for (let i = 1; i <= lastDate; i++) {
-            if (
-                i == new Date().getDate() && 
-                year == new Date.getFullYear() && 
-                month == new Date.getMonth()
-            ) {
+            if (i === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth()) {
               days += `<div class="day today" >${i}</div>`;
             }
             else {
-                days += `<div class="day " >${i}</div>`;
+                days += `<div class="day ">${i}</div>`;
             }
         }
         for (let j = 1; j <= nextDays; j++) {
-            days += `<div class="day next-date " >${j}</div>`;
+            days += `<div class="day next-date ">${j}</div>`;
         }
         daysContainer.innerHTML = days;
+        addListener();
     }
+
+    initCalendar();
 
     function prevMonth() {
         month--;
@@ -303,11 +186,58 @@
         }
         initCalendar();
     }
-    prev.addEventListener("click", prevMonth)
-    next.addEventListener("click", nextMonth)
+    prev.addEventListener("click", prevMonth);
+    next.addEventListener("click", nextMonth);
 
+    function addListener() {
+        const days = document.querySelectorAll(".day");
+        days.forEach((day) => {
+            day.addEventListener("click"), (e) => {
+                activeDay = Number(e.target.innerHTML);
 
-  });
+                getActiveDay(e.target.innerHTML);
+
+                days.forEach((day) => {
+                    day.classList.remove("active");
+                });
+
+                if (e.target.classList.contains("prev-date")) {
+                    prevMonth();
+
+                    setTimeout(() => {
+                        const days = document.querySelectorAll(".day");
+
+                        days.forEach((day) => {
+                            if (
+                                !day.classList.contains("prev-date") &&
+                                day.innerHTML === e.target.innerHTML
+                            ) {
+                                day.classList.add("active");
+                            }
+                        });
+                    }, 100);
+                } else if (e.target.classList.contains("next-date")) {
+                    nextMonth();
+
+                    setTimeout(() => {
+                        const days = document.querySelectorAll(".day");
+
+                        days.forEach((day) => {
+                            if (
+                                !day.classList.contains("next-date") &&
+                                day.innerHTML === e.target.innerHTML
+                            ) {
+                                day.classList.add("active");
+                            }
+                        });
+                    }, 100);
+                } else {
+                    e.target.classList.add("active");
+                }
+
+            };
+        });
+    }
     </script>
 
     <style>
@@ -655,6 +585,15 @@
             font-size: 2rem;
             color: #fff;
             background-color: #182d4f;
+        }
+        .calendar .days .active::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 10px 2px var(--primary-clr);
         }
         .calendar .days .event {
             position: relative;
