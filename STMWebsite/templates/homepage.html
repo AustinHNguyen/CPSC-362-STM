@@ -1,6 +1,16 @@
 {% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content 
 %}
 
+<head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+
 <form>  
     <div align="center">
         <input class="date" type="text" id="dateChosen" disabled>  
@@ -8,69 +18,20 @@
 </form> 
 <body>
     <div align="right">
-        <div class="text-box" id="task-text1">
-            <textarea rows="1" cols="50" id="task-text1">{{ user.text1 }}</textarea>
+        <div class="today-date">
+            <div class="event-day">Wed</div>
+            <div class="event-date">16 November 2022</div>
         </div>
-    
-        <div class="text-box" id="task-text2">
-            <textarea rows="1" cols="50" id="task-text2">{{ user.text2 }}</textarea>
+        <div class="events">
+            <div class="event">
+                <div class="title">
+                    <i class="fa-solid fa-circle"></i>
+                    <h3 class="event-title">Event 1</h3>
+                </div>
+                <div class="event-time">10:00AM - 12:00PM</div>
+            </div>
         </div>
-
-        <div class="text-box" id="task-text3">
-            <textarea rows="1" cols="50" id="task-text3">{{ user.text3 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text4">
-            <textarea rows="1" cols="50" id="task-text4">{{ user.text4 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text5">
-            <textarea rows="1" cols="50" id="task-text5">{{ user.text5 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text6">
-            <textarea rows="1" cols="50" id="task-text6">{{ user.text6 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text7">
-            <textarea rows="1" cols="50" id="task-text7">{{ user.text7 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text8">
-            <textarea rows="1" cols="50" id="task-text8">{{ user.text8 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text9">
-            <textarea rows="1" cols="50" id="task-text9">{{ user.text9 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text10">
-            <textarea rows="1" cols="50" id="task-text10">{{ user.text10 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text11">
-            <textarea rows="1" cols="50" id="task-text11">{{ user.text11 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text12">
-            <textarea rows="1" cols="50" id="task-text12">{{ user.text12 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text13">
-            <textarea rows="1" cols="50" id="task-text13">{{ user.text13 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text14">
-            <textarea rows="1" cols="50" id="task-text14">{{ user.text14 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text15">
-            <textarea rows="1" cols="50" id="task-text15">{{ user.text15 }}</textarea>
-        </div>
-
-        <div class="text-box" id="task-text16">
-            <textarea rows="1" cols="50" id="task-text16">{{ user.text16 }}</textarea>
-        </div>
+    </div>
         <div class="container">
         <div class="left">
             <div class="calendar">
@@ -99,30 +60,82 @@
         </div>
         <div class="add-event-body">
           <div class="add-event-input">
-            <input type="text" placeholder="Event Name" class="event-name" />
+            <input type="text" placeholder="Type note here" class="event-name" />
+          </div>
+          <div class="add-event-input">
+            <input type="text" placeholder="Start time" class="event-time-from" />
+          </div>
+          <div class="add-event-input">
+            <input type="text" placeholder="End time" class="event-time-to" />
           </div>
         </div>
         <div class="add-event-footer">
           <button class="add-event-btn">Add Note</button>
         </div>
-      </div>
-    </div>
-    <button class="add-event">
-      <i class="fas fa-plus"></i>
-    </button>
+        <button class="add-event">
+            <i class="fas fa-plus"></i>
+        </button>
   </div>
 </div>
     <script>
+        const addEventBtn = document.querySelector(".add-event"),
+        addEventContainer = document.querySelector(".add-event-wrapper"),
+        addEventCloseBtn = document.querySelector(".close");
+        addEventTitle = document.querySelector(".event-name");
+        addEventFrom = document.querySelector(".event-time-from");
+        addEventTo = document.querySelector(".event-time-to");
+      
+        addEventBtn.addEventListener("click", () => {
+            addEventContainer.classList.toggle("active");
+        });
+
+        addEventCloseBtn.addEventListener("click", () => {
+            addEventContainer.classList.remove("active");
+        });
+
+    document.addEventListener("click", (e) => {
+        if (e.target != addEventBtn && !addEventContainer.contains(e.target)) {
+            addEventContainer.classList.remove("active");
+        }
+    });
+
+    addEventFrom.addEventListener("input", (e) => {
+        addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+    });
+
     const calendar = document.querySelector(".calendar"),
         date = document.querySelector(".date"),
         daysContainer = document.querySelector(".days"),
         prev = document.querySelector(".prev");
-            next = document.querySelector(".next");
+        next = document.querySelector(".next");
 
     let today = new Date();
     let activeDay;
     let month = today.getMonth();
     let year = today.getFullYear();
+
+    document.getElementById("dateChosen").value = new Date().toLocaleDateString(); 
+    
+        const eventsArr = [
+        {
+            day: 13,
+            month: 11,
+            year: 2022,
+            events: [
+                {
+                    title: "Event 1 yes",
+                    time: "10AM",
+                },
+                {
+                    title: "Event 2 no",
+                    time: "11PM",
+                },
+            ],
+        },
+    ];
+    
+
+
 
     const months = [
         "January",
@@ -153,11 +166,32 @@
             days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
         }
         for (let i = 1; i <= lastDate; i++) {
-            if (i === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth()) {
-              days += `<div class="day today" >${i}</div>`;
+            let event = false;
+            eventsArr.forEach((eventObj) => {
+                if(eventObj.day == i && eventObj.month == month + 1 && eventObj.year == year) {
+                    event = true;
+                }
+            });
+            if (
+                i == new Date().getDate() && 
+                year == new Date().getFullYear() && 
+                month == new Date().getMonth()
+            ) {
+                if (event) {
+                    days += `<div class="day today active event" >${i}</div>`;
+                }
+                else {
+                    days += `<div class="day today active" >${i}</div>`;
+                }
+              
             }
             else {
-                days += `<div class="day ">${i}</div>`;
+                if (event) {
+                    days += `<div class="day event" >${i}</div>`;
+                }
+                else {
+                    days += `<div class="day" >${i}</div>`;
+                }
             }
         }
         for (let j = 1; j <= nextDays; j++) {
@@ -238,281 +272,20 @@
             };
         });
     }
+
+    const eventDay = document.querySelector(".event-day"),
+        eventDate = document.querySelector(".event-date");
+        function getActiveDay(date) {
+            const day = new Date(year, month, date);
+            const dayName = day.toString().split(" ")[0];
+            eventDay.innerHTML = dayName;
+            eventDate.innerHTML = date + " " + months(month) + " " + year;
+        }
     </script>
 
     <style>
         :root {
             --primary-clr: #191e3a;
-        }
-
-        textarea {
-            background-color: #191e3a;
-            color: white;
-            vertical-align: top;
-            margin-bottom: 15px;
-        }
-
-        input.date {
-            margin: 30px;
-            background-color: #191e3a;
-            color: white;
-            text-align: center;
-        }
-
-        #task-text1 {
-            position:relative;
-            display: block;
-        }
-
-        #task-text1::before {
-            top: 4px;
-            left: 550px;
-            content: '8 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text2 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text2::before {
-            top: 4px;
-            left: 550px;
-            content: '9 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text3 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text3::before {
-            top: 4px;
-            left: 550px;
-            content: '10 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text4 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text4::before {
-            top: 4px;
-            left: 550px;
-            content: '11 A.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text5 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text5::before {
-            top: 4px;
-            left: 550px;
-            content: '12 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text6 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text6::before {
-            top: 4px;
-            left: 550px;
-            content: '1 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-        
-        #task-text7 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text7::before {
-            top: 4px;
-            left: 550px;
-            content: '2 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text8 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text8::before {
-            top: 4px;
-            left: 550px;
-            content: '3 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text9 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text9::before {
-            top: 4px;
-            left: 550px;
-            content: '4 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text10 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text10::before {
-            top: 4px;
-            left: 550px;
-            content: '5 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text11 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text11::before {
-            top: 4px;
-            left: 550px;
-            content: '6 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text12 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text12::before {
-            top: 4px;
-            left: 550px;
-            content: '7 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text13 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text13::before {
-            top: 4px;
-            left: 550px;
-            content: '8 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text14 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text14::before {
-            top: 4px;
-            left: 550px;
-            content: '9 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text15 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text15::before {
-            top: 4px;
-            left: 550px;
-            content: '10 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
-        }
-
-        #task-text16 {
-            position: relative;
-            display: block;
-        }
-
-        #task-text16::before {
-            top: 4px;
-            left: 550px;
-            content: '11 P.M.';
-            position: absolute;
-            font-size: 14px;
-            font-family: Arial;
-            font-weight: bold;
-            color: white;
         }
         
         .calendar {
@@ -585,15 +358,6 @@
             font-size: 2rem;
             color: #fff;
             background-color: #182d4f;
-        }
-        .calendar .days .active::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: 0 0 10px 2px var(--primary-clr);
         }
         .calendar .days .event {
             position: relative;
@@ -745,6 +509,128 @@
 
         .add-event i {
             pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            color: white;
+        }
+
+        .container .right {
+            position: relative;
+            width: 40%;
+            min-height: 100%;
+            padding: 20px 0;
+        }
+
+        .right .today-date {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            padding-left: 70px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        .today-date .event-day {
+            font-size: 2rem;
+            font-weight: 500;
+            padding-right: 140px;
+        }
+
+        .today-date .event-date {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #ccc6c6;
+            padding-right: 100px;
+        }
+
+        .events {
+            width: 100%;
+            height: 100%;
+            max-height: 600px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .events .event {
+            position: relative;
+            width: 95%;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 20px;
+            padding-left: 800px;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(10deg, #3f4458, transparent);
+            background-size: cover;
+            background-attachment: local;
+        }
+        .events .event .title {
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            gap: 10px;
+        }
+
+        .events .event .title .event-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .events .event .title i {
+            color: var(--primary-clr);
+                font-size: .75rem;
+        }
+
+        .events .event:hover .title i {
+            color: white;
+        }
+
+        .events .event:hover {
+            background: linear-gradient(10deg, var(--primary-clr), transparent);
+        }
+
+        .events .event:hover .title i,
+        .events .event:hover .event-title {
+            color: #e6b232;
+        }
+
+        .events .event .event-time {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #e6b232;
+            margin-left: 15px;
+            pointer-events: none;
+        }
+
+        .events .event::after {
+            content: "✔";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            font-size: 2.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: green;
+            transform: translateY(-50%);
+        }
+
+        .events .event:hover::after {
+            display: flex;
         }
     </style>
 </body>
