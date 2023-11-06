@@ -1,8 +1,31 @@
-{% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content 
-    %}
+{% extends "jinja.html" %} {% block title %}Student Task Manager{% endblock %} {% block content %}
+<head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+</head>
+
     <body>
-        <div align="right">
-            <div class="container">
+        <div class="container">
+            <div align="right">
+                <div class="today-date">
+        <div class="event-day">Wed</div>
+        <div class="event-date">16 November 2022</div>
+        </div>
+        <div class="events">
+        <div class="event">
+        <div class="title">
+        <i class="fa-solid fa-circle"></i>
+        <h3 class="event-title">Event 1</h3>
+        </div>
+        <div class="event-time">10:00AM - 12:00PM</div>
+        </div>
+        </div>
+        </div>
             <div class="left">
                 <div class="calendar">
                     <div class="month">
@@ -30,8 +53,14 @@
             </div>
             <div class="add-event-body">
               <div class="add-event-input">
-                <input type="text" placeholder="Event Name" class="event-name" />
-              </div>
+                <input type="text" placeholder="Type note here" class="event-name" />
+                </div>
+                <div class="add-event-input">
+                <input type="text" placeholder="Start time" class="event-time-from" />
+                </div>
+                <div class="add-event-input">
+                <input type="text" placeholder="End time" class="event-time-to" />
+                </div>
             </div>
             <div class="add-event-footer">
               <button class="add-event-btn">Add Note</button>
@@ -48,7 +77,7 @@
             date = document.querySelector(".date"),
             daysContainer = document.querySelector(".days"),
             prev = document.querySelector(".prev");
-                next = document.querySelector(".next");
+            next = document.querySelector(".next");
     
         let today = new Date();
         let activeDay;
@@ -69,6 +98,39 @@
             "November",
             "December",
         ];
+
+        const addEventBtn = document.querySelector(".add-event"),
+        addEventContainer = document.querySelector(".add-event-wrapper"),
+        addEventCloseBtn = document.querySelector(".close");
+        addEventTitle = document.querySelector(".event-name");
+        addEventFrom = document.querySelector(".event-time-from");
+        addEventTo = document.querySelector(".event-time-to");
+
+        addEventBtn.addEventListener("click", () => {
+        addEventContainer.classList.toggle("active");
+        });
+
+        addEventCloseBtn.addEventListener("click", () => {
+        addEventContainer.classList.remove("active");
+        });
+
+        document.addEventListener("click", (e) => {
+        if (e.target != addEventBtn && !addEventContainer.contains(e.target)) {
+            addEventContainer.classList.remove("active");
+            }
+        });
+
+            addEventFrom.addEventListener("input", (e) => {
+            addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+            });
+            
+            addEventTo.addEventListener("input", (e) => {
+            addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+            });
+
+            
+
+
         function initCalendar() {
             const firstDay = new Date(year, month, 1);
             const lastDay = new Date(year, month + 1, 0);
@@ -180,10 +242,10 @@
             
             .calendar {
                 position: relative;
-                right: 600px;
-                top: 40px;
+                right: 10px;
+                bottom: 110px;
                 width: 40%;
-                height: 100%;
+                height: 70%;
                 color: #878895;
                 display: flex;
                 flex-direction: column;
