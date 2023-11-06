@@ -10,12 +10,6 @@
       referrerpolicy="no-referrer"
     />
 </head>
-
-<form>  
-    <div align="center">
-        <input class="date" type="text" id="dateChosen" disabled>  
-    </div>
-</form> 
 <body>
     <div align="right">
         <div class="today-date">
@@ -32,7 +26,6 @@
             </div>
         </div>
     </div>
-        <div class="container">
         <div class="left">
             <div class="calendar">
                 <div class="month">
@@ -52,7 +45,7 @@
                 <div class="days"></div>
             </div>
         </div>
-    </div>
+
     <div class="add-event-wrapper">
         <div class="add-event-header">
           <div class="title">Add Note</div>
@@ -151,6 +144,7 @@
         "November",
         "December",
     ];
+
     function initCalendar() {
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
@@ -161,6 +155,7 @@
         const nextDays = 7 - lastDay.getDay() - 1;  
         
         date.innerHTML = months[month] + " " + year;
+
         let days = "";
         for (let x = day; x > 0; x--) {
             days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
@@ -177,6 +172,9 @@
                 year == new Date().getFullYear() && 
                 month == new Date().getMonth()
             ) {
+                activeDay = i;
+                getActiveDay(i);
+                updateEvents(i);
                 if (event) {
                     days += `<div class="day today active event" >${i}</div>`;
                 }
@@ -201,8 +199,6 @@
         addListener();
     }
 
-    initCalendar();
-
     function prevMonth() {
         month--;
         if (month < 0) {
@@ -222,6 +218,8 @@
     }
     prev.addEventListener("click", prevMonth);
     next.addEventListener("click", nextMonth);
+
+    initCalendar();
 
     function addListener() {
         const days = document.querySelectorAll(".day");
@@ -290,8 +288,8 @@
         
         .calendar {
             position: relative;
-            right: 630px;
-            bottom: 720px;
+            left: 50px;
+            bottom: 60px;
             width: 40%;
             height: 100%;
             color: #878895;
