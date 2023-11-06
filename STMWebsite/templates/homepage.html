@@ -128,7 +128,23 @@
             addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
             });
 
-            
+            const eventsArr = [
+            {
+                day: 13,
+                month: 11,
+                year: 2022,
+                events: [
+                {
+                    title: "Event 1",
+                    time: "10AM",
+                },
+                {
+                    title: "Event 2",
+                    time: "11AM",
+                },
+                ],
+            },
+        ];
 
 
         function initCalendar() {
@@ -146,11 +162,27 @@
                 days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
             }
             for (let i = 1; i <= lastDate; i++) {
-                if (i === new Date().getDate() && year === new Date().getFullYear() && month === new Date().getMonth()) {
-                  days += `<div class="day today" >${i}</div>`;
+                let event = false;
+                eventsArr.forEach((eventObj) => {
+                    if (eventObj.day == i && eventObj.month == month + 1 && eventObj.year == year) {
+                        event = true;
+                    }
+                });
+                if (i == new Date().getDate() && year == new Date().getFullYear() && month == new Date().getMonth()) {
+                    if (event) {
+                        days += `<div class="day today event" >${i}</div>`;
+                    }
+                    else {
+                        days += `<div class="day today">${i}</div>`;
+                    }
                 }
                 else {
-                    days += `<div class="day ">${i}</div>`;
+                    if (event) {
+                        days += `<div class="day event" >${i}</div>`;
+                    }
+                    else {
+                        days += `<div class="day">${i}</div>`;
+                    }
                 }
             }
             for (let j = 1; j <= nextDays; j++) {
@@ -471,6 +503,129 @@
             .add-event i {
                 pointer-events: none;
             }
+
+            .container {
+                position: relative;
+                color: white;
+                }
+                
+                .container .right {
+                position: relative;
+                width: 40%;
+                min-height: 100%;
+                padding: 20px 0;
+                }
+                
+                .right .today-date {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 40px;
+                padding-left: 70px;
+                margin-top: 50px;
+                margin-bottom: 20px;
+                text-transform: capitalize;
+                }
+                
+                .today-date .event-day {
+                font-size: 2rem;
+                font-weight: 500;
+                padding-right: 140px;
+                }
+                
+                .today-date .event-date {
+                font-size: 1rem;
+                font-weight: 400;
+                color: #ccc6c6;
+                padding-right: 100px;
+                }
+                
+                .events {
+                width: 100%;
+                height: 100%;
+                max-height: 600px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                }
+                
+                .events .event {
+                position: relative;
+                width: 95%;
+                min-height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 5px;
+                padding: 0 20px;
+                padding-left: 800px;
+                color: white;
+                cursor: pointer;
+                background: linear-gradient(10deg, #3f4458, transparent);
+                background-size: cover;
+                background-attachment: local;
+                }
+                .events .event .title {
+                display: flex;
+                align-items: center;
+                pointer-events: none;
+                gap: 10px;
+                }
+                
+                .events .event .title .event-title {
+                font-size: 1.5rem;
+                font-weight: 400;
+                }
+                
+                .events .event .title i {
+                color: var(--primary-clr);
+                font-size: .75rem;
+                }
+                
+                .events .event:hover .title i {
+                color: white;
+                }
+                
+                .events .event:hover {
+                background: linear-gradient(10deg, var(--primary-clr), transparent);
+                }
+                
+                .events .event:hover .title i,
+                .events .event:hover .event-title {
+                color: #e6b232;
+                }
+                
+                .events .event .event-time {
+                font-size: 0.8rem;
+                font-weight: 400;
+                color: #e6b232;
+                margin-left: 15px;
+                pointer-events: none;
+                }
+                
+                .events .event::after {
+                content: "✔";
+                position: absolute;
+                top: 50%;
+                right: 0;
+                font-size: 2.5rem;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: green;
+                transform: translateY(-50%);
+                }
+                
+                .events .event:hover::after {
+                display: flex;
+                }
+
         </style>
     </body>
     {% endblock %}
