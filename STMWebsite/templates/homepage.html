@@ -48,15 +48,15 @@
                   <div class="add-event-input">
                     <input
                       type="text"
-                      placeholder="Event Time From"
-                      class="event-time-from"
+                      placeholder="Task Time Start"
+                      class="task-time-start"
                     />
                   </div>
                   <div class="add-event-input">
                     <input
                       type="text"
-                      placeholder="Event Time To"
-                      class="event-time-to"
+                      placeholder="Task Time End"
+                      class="task-time-end"
                     />
                   </div>
                 </div>
@@ -82,8 +82,8 @@
             addEventWrapper = document.querySelector(".add-event-wrapper "),
             addEventCloseBtn = document.querySelector(".close "),
             addEventTitle = document.querySelector(".event-name "),
-            addEventFrom = document.querySelector(".event-time-from "),
-            addEventTo = document.querySelector(".event-time-to "),
+            createTaskStart = document.querySelector(".task-time-start "),
+            createTaskEnd = document.querySelector(".task-time-end "),
             addEventSubmit = document.querySelector(".add-event-btn ");
           
           let today = new Date();
@@ -289,8 +289,8 @@
           
           addEventSubmit.addEventListener("click", () => {
             const eventTitle = addEventTitle.value;
-            const eventTimeFrom = addEventFrom.value;
-            const eventTimeTo = addEventTo.value;
+            const eventTimeFrom = createTaskStart.value;
+            const eventTimeTo = createTaskEnd.value;
             if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
               alert("Please fill all the fields");
               return;
@@ -328,8 +328,8 @@
             console.log(eventsArr);
             addEventWrapper.classList.remove("active");
             addEventTitle.value = "";
-            addEventFrom.value = "";
-            addEventTo.value = "";
+            createTaskStart.value = "";
+            createTaskEnd.value = "";
             updateEvents(activeDay);
             const activeDayEl = document.querySelector(".day.active");
             if (!activeDayEl.classList.contains("event")) {
