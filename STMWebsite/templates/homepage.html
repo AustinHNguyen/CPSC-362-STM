@@ -43,7 +43,7 @@
                 </div>
                 <div class="add-event-body">
                   <div class="add-event-input">
-                    <input type="text" placeholder="Task Name" class="event-name" />
+                    <input type="text" placeholder="Task Name" class="task-name" />
                   </div>
                   <div class="add-event-input">
                     <input
@@ -61,7 +61,7 @@
                   </div>
                 </div>
                 <div class="add-event-footer">
-                  <button class="add-event-btn">Add Event</button>
+                  <button class="create-task-btn">Add Task</button>
                 </div>
               </div>
             </div>
@@ -80,11 +80,11 @@
             eventsContainer = document.querySelector(".events"),
             addEventBtn = document.querySelector(".add-event"),
             addEventWrapper = document.querySelector(".add-event-wrapper "),
-            addEventCloseBtn = document.querySelector(".close "),
-            createTaskName = document.querySelector(".event-name "),
+            createTaskCloser = document.querySelector(".close "),
+            createTaskName = document.querySelector(".task-name "),
             createTaskStart = document.querySelector(".task-time-start "),
             createTaskEnd = document.querySelector(".task-time-end "),
-            addEventSubmit = document.querySelector(".add-event-btn ");
+            createTaskBtn = document.querySelector(".create-task-btn ");
           
           let today = new Date();
           let activeDay;
@@ -273,7 +273,7 @@
             addEventWrapper.classList.toggle("active");
           });
           
-          addEventCloseBtn.addEventListener("click", () => {
+          createTaskCloser.addEventListener("click", () => {
             addEventWrapper.classList.remove("active");
           });
           
@@ -287,7 +287,7 @@
             createTaskName.value = createTaskName.value.slice(0, 60);
           });
           
-          addEventSubmit.addEventListener("click", () => {
+          createTaskBtn.addEventListener("click", () => {
             const eventTitle = createTaskName.value;
             const eventTimeFrom = createTaskStart.value;
             const eventTimeTo = createTaskEnd.value;
@@ -725,7 +725,7 @@
                 justify-content: center;
                 padding: 20px;
               }
-              .add-event-footer .add-event-btn {
+              .add-event-footer .create-task-btn {
                 height: 40px;
                 font-size: 1rem;
                 font-weight: 500;
@@ -738,7 +738,7 @@
                 padding: 5px 10px;
                 border: 1px solid var(--primary-clr);
               }
-              .add-event-footer .add-event-btn:hover {
+              .add-event-footer .create-task-btn:hover {
                 background-color: transparent;
                 color: var(--primary-clr);
               }
